@@ -10,7 +10,7 @@ class EstateProperty(models.Model):
 
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
-    postocde = fields.Char(string='Post Code')
+    postcode = fields.Char(string='Postcode')
     date_availability = fields.Date(string='Date Availability', default=lambda self: fields.Datetime.today(), copy=False)
     expected_price = fields.Float(string='Expected Price', required=True)
     selling_price = fields.Float(string='Selling Price', readonly=True, copy=False)
@@ -25,7 +25,7 @@ class EstateProperty(models.Model):
         ('south', 'South'),
         ('east', 'East'),
         ('west', 'West')
-    ], string='Garden Orientation')
+    ], string='Garden Orientation', default="north")
     active = fields.Boolean('Active', default=True)
     state = fields.Selection([
         ('new', 'New'),
