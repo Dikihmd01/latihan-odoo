@@ -37,3 +37,4 @@ My Learning Journey Checklist
 - [x] Chapter 2: Development Environment Setup
 - [x] Chapter 3: A New Application
 - [x] Chapter 4: Models and Basic Fields
+- [x] Chapter 5: Security - A Brief Introduction
