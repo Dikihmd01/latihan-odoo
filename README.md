@@ -38,3 +38,4 @@ My Learning Journey Checklist
 - [x] Chapter 3: A New Application
 - [x] Chapter 4: Models and Basic Fields
 - [x] Chapter 5: Security - A Brief Introduction
+- [x] Chapter 6: Finally, Some UI To Play With
