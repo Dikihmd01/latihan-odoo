@@ -39,6 +39,19 @@ class EstateProperty(models.Model):
     partner_id = fields.Many2one(comodel_name='res.partner', string='Buyer')
     tag_ids = fields.Many2many(comodel_name='estate.property.tag', string='Tag')
     offer_ids = fields.One2many(comodel_name='estate.property.offer', inverse_name='property_id', string='Offer')
+    total_area = fields.Integer(compute='_compute_total_area', string='Total Area')
+    
+    @api.depends('living_area', 'garden_area')
+    def _compute_total_area(self):
+        for line in self:
+            line.total_area = self.living_area + self.garden_area
+    
+    best_price = fields.Float(compute='_compute_best_price', string='Best Price')
+    
+    @api.depends('offer_ids.price')
+    def _compute_best_price(self):
+        for line in self:
+            line.best_price = max(line.mapped('offer_ids.price'))
     
     
     
