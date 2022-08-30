@@ -17,6 +17,10 @@
                 id="estate_property_tag_menu_action"
                 action="estate_property_tag_action"
                 sequence="10"/>
+            <menuitem
+                id="estate_property_offer_menu_action"
+                action="estate_property_offer_action"
+                sequence="10"/>
         </menuitem>
     </menuitem>        
 </odoo>
