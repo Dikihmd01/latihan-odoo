@@ -37,6 +37,7 @@
                         <group>
                             <field name="date_availability" />
                             <field name="expected_price" />
+                            <field name="tag_ids" widget="many2many_tags" />
                         </group>
                     </group>
                     <notebook>
@@ -75,7 +76,7 @@
                 <field name="bedrooms" />
                 <field name="living_area" />
                 <field name="expected_price" />
-                <field name="selling_price" />
+                <field name="tag_ids" />
                 <field name="date_availability" />
                 <field name="state" />
                 <field name="estate_property_id" />

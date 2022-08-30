@@ -37,6 +37,7 @@ class EstateProperty(models.Model):
     estate_property_id = fields.Many2one(comodel_name='estate.property.type', string='Property Types')
     user_id = fields.Many2one(comodel_name='res.users', string='Salesman')
     partner_id = fields.Many2one(comodel_name='res.partner', string='Buyer')
+    tag_ids = fields.Many2many(comodel_name='estate.property.tag', string='Tag')
     
     
     
