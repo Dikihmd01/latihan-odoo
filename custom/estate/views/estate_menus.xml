@@ -7,5 +7,12 @@
                 action="estate_property_action"
                 sequence="10"/>
         </menuitem>
+
+        <menuitem id="estate_second_level_menu" name="Settings">
+            <menuitem
+                id="estate_property_type_menu_action"
+                action="estate_property_type_action"
+                sequence="10"/>
+        </menuitem>
     </menuitem>        
 </odoo>
