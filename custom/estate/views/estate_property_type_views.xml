@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- estate.property.type search view -->
+    <record id="estate_property_type_view_search" model="ir.ui.view">
+        <field name="name">estate.property.type.view.search</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name" />
+                <separator/>
+                <filter name="house" string="House" domain="[('name', '=', 'House')]" />
+            </search>
+        </field>
+    </record>
+
+    <!-- estate.property.type form view -->
+    <record id="estate_property_type_view_form" model="ir.ui.view">
+        <field name="name">estate.property.type.view.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- estate.property.type tree view -->
+    <record id="mestate_property_type_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.type.view.tree</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id="estate_property_type_action" model="ir.actions.act_window">
+        <field name="name">Propertie Types</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
