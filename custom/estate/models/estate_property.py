@@ -35,6 +35,10 @@ class EstateProperty(models.Model):
         ('canceled', 'Canceled')
     ], string='state', default='new', required=True, copy=False)
     estate_property_id = fields.Many2one(comodel_name='estate.property.type', string='Property Types')
+    user_id = fields.Many2one(comodel_name='res.users', string='Salesman')
+    partner_id = fields.Many2one(comodel_name='res.partner', string='Buyer')
+    
+    
     
     
     

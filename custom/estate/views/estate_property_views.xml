@@ -53,6 +53,12 @@
                                 <field name="state" />
                             </group>
                         </page>
+                        <page string="Others">
+                            <group>
+                                <field name="user_id" />
+                                <field name="partner_id" />
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -73,6 +79,8 @@
                 <field name="date_availability" />
                 <field name="state" />
                 <field name="estate_property_id" />
+                <field name="user_id" />
+                <field name="partner_id" />
             </tree>
         </field>
     </record>
