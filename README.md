@@ -41,3 +41,4 @@ My Learning Journey Checklist
 - [x] Chapter 6: Finally, Some UI To Play With
 - [x] Chapter 7: Basic Views
 - [x] Chapter 8: Relations Between Models
+- [x] Chapter 9: Computed Fields And Onchanges
