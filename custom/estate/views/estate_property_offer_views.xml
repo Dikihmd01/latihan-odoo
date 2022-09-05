@@ -8,12 +8,19 @@
         <field name="arch" type="xml">
             <tree>
                 <!-- Add your fields here -->
-                <!-- <field name="name" /> -->
                 <field name="price" />
                 <field name="partner_id" />
-                <field name="status" />
                 <field name="validity" />
                 <field name="date_deadline" />
+                <button name="action_to_set_as_accepted"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-check" />
+                <button name="action_to_set_as_refused"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-times" />
+                <field name="status" />
             </tree>
         </field>
     </record>

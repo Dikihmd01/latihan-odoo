@@ -1,5 +1,6 @@
 from datetime import timedelta
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class PropertyOffer(models.Model):
@@ -32,5 +33,21 @@ class PropertyOffer(models.Model):
             if line.date_deadline:
                 line.validity = (line.date_deadline - line.create_date.date()).days
     
+    def action_to_set_as_accepted(self):
+        # for line in self:
+        #     line.status = 'accepted'
+        # return True
+        if 'accepted' in self.mapped('property_id.offer_ids.status'):
+            raise UserError('An offer has been accpedted!')
+        self.write({'status': 'accepted'})
+
+        return self.mapped('property_id').write({
+            'state': 'offer accepted',
+            'selling_price': self.price,
+            'partner_id': self.partner_id.id
+        })
     
-    
+    def action_to_set_as_refused(self):
+        for line in self:
+            line.status = 'refused'
+        return True
