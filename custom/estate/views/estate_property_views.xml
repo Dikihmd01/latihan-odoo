@@ -14,9 +14,11 @@
                 <field name="selling_price" />
                 <field name="facades" />
                 <separator/>
-                <filter name="available" string="Available" domain="[('state', '=', 'new')]" />
+                <filter name="available" string="Available"
+                        domain="[('state', '=', 'new')]" />
                 <group string="Group by" expand="1">
-                    <filter name="postcode" string="Postcode" context="{'group_by':'postcode', 'residual_visible':True}" />
+                    <filter name="postcode" string="Postcode"
+                            context="{'group_by':'postcode', 'residual_visible':True}" />
                 </group>
             </search>
         </field>
@@ -28,11 +30,18 @@
         <field name="arch" type="xml">
             <form string="My New House">
                 <sheet>
+                    <button string="Sold" 
+                            name="action_to_set_state_to_sold"
+                            type="object" />
+                    <button string="Cancel"
+                            name="action_to_set_state_to_canceled" 
+                            type="object" />
                     <group>
                         <group>
                             <field name="name" />
                             <field name="postcode" />
                             <field name="estate_property_id" />
+                            <field name="state" />
                         </group>
                         <group>
                             <field name="date_availability" />
@@ -53,7 +62,6 @@
                                 <field name="total_area" />
                                 <field name="garden_orientation" />
                                 <field name="active" />
-                                <field name="state" />
                             </group>
                         </page>
                         <page string="Offers">

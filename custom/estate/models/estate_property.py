@@ -1,5 +1,6 @@
 from ast import Try
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class EstateProperty(models.Model):
@@ -37,7 +38,7 @@ class EstateProperty(models.Model):
         ('offer accepted', 'Offer Accepted'),
         ('sold', 'Sold'),
         ('canceled', 'Canceled')
-    ], string='state', default='new', required=True, copy=False)
+    ], string='Status', default='new', required=True, copy=False)
     estate_property_id = fields.Many2one(
         comodel_name='estate.property.type',
         string='Property Types')
@@ -84,3 +85,15 @@ class EstateProperty(models.Model):
             else:
                 line.garden_area = 0
                 line.garden_orientation = ''
+    
+    def action_to_set_state_to_sold(self):
+        for line in self:
+            if line.state == 'canceled':
+                raise UserError('A canceled property cannot be sold')
+            return self.write({'state': 'sold'})
+
+    def action_to_set_state_to_canceled(self):
+        for line in self:
+            if line.state == 'sold':
+                raise UserError('A sold property cannot be canceled')
+            return self.write({'state': 'canceled'})
