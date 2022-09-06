@@ -1,6 +1,8 @@
 from datetime import timedelta
 from odoo import api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.osv.expression import AND
+from odoo.tools.float_utils import float_compare, float_is_zero
 
 
 class PropertyOffer(models.Model):
@@ -28,10 +30,18 @@ class PropertyOffer(models.Model):
         string='Date Deadline',
         default=lambda self: fields.Datetime.today())
 
+    # SQL constraints
     _sql_constraints = [
         ('check_positive_offer_price',
          'CHECK(price >= 0)',
          'The price value must be a positive number!')]
+    
+    # Python constraints
+    @api.constrains('price')
+    def check_price(self):
+        for line in self:
+            if (100 * float(line.price)) / float(line.property_id.expected_price) < 90:
+                raise ValidationError('The selling price must be at least 90% of the expected price')
 
     @api.depends('create_date', 'validity')
     def _compute_date_deadline(self):
@@ -62,6 +72,6 @@ class PropertyOffer(models.Model):
         })
 
     def action_to_set_as_refused(self):
-        for line in self:
-            line.status = 'refused'
-        return True
+        return self.write({
+            'state': 'refused'
+        })

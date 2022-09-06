@@ -1,6 +1,7 @@
 from ast import Try
 from odoo import api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools.float_utils import float_compare
 
 
 class EstateProperty(models.Model):
@@ -61,6 +62,7 @@ class EstateProperty(models.Model):
         compute='_compute_best_price',
         string='Best Offer')
 
+    # SQL Constraints
     _sql_constraints = [
         ('check_positive_expected_price',
          'CHECK(expected_price >= 0)',
