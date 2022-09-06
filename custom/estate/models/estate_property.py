@@ -24,7 +24,9 @@ class EstateProperty(models.Model):
     facades = fields.Integer(string='Facades')
     garage = fields.Boolean(string='Garage')
     garden = fields.Boolean(string='Garden')
-    garden_area = fields.Integer(string='Garden Area', onchange='_onchange_garden_area')
+    garden_area = fields.Integer(
+        string='Garden Area',
+        onchange='_onchange_garden_area')
     garden_orientation = fields.Selection([
         ('north', 'North'),
         ('south', 'South'),
@@ -59,6 +61,15 @@ class EstateProperty(models.Model):
         compute='_compute_best_price',
         string='Best Offer')
 
+    _sql_constraints = [
+        ('check_positive_expected_price',
+         'CHECK(expected_price >= 0)',
+         'The expected price must be a positive number!'),
+        ('check_positive_selling_price',
+         'CHECK(selling_price >= 0 OR selling_price = null)',
+         'The selling price must be a positive number!'),
+    ]
+
     @api.depends('living_area', 'garden_area')
     def _compute_total_area(self):
         for line in self:
@@ -85,7 +96,7 @@ class EstateProperty(models.Model):
             else:
                 line.garden_area = 0
                 line.garden_orientation = ''
-    
+
     def action_to_set_state_to_sold(self):
         for line in self:
             if line.state == 'canceled':
